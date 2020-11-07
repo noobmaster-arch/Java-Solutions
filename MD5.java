@@ -29,7 +29,7 @@ public class MD5 {
   		String st; 
   		while ((st = br.readLine()) != null){
 			
-			String[] array=st.split("\t-\t", -2);
+			String[] array=st.split("\t-\t");
 			if(getMd5(array[0]).equals(array[1])){
 				System.out.println("verified");
 			}
