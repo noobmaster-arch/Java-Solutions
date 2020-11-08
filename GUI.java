@@ -18,6 +18,7 @@ public class GUI extends JFrame implements ActionListener{
    JFileChooser fc;
    JTable j;
    File file;
+   JScrollPane sp;
 
    public static String getMd5(String input) 
 	{ 
@@ -44,9 +45,6 @@ public class GUI extends JFrame implements ActionListener{
       button2.addActionListener(this);
       fc = new JFileChooser();
 
-
-
-
       panel = new JPanel();
       panel.setBorder(BorderFactory.createEmptyBorder(300,300,100,300));
       panel.setLayout(new GridLayout(0,1));
@@ -71,11 +69,41 @@ public class GUI extends JFrame implements ActionListener{
 
    public void actionPerformed(ActionEvent e){
       if (e.getSource() == button1) {
+
+         if(sp!=null){
+            frame.getContentPane().removeAll();
+            frame.repaint();
+            frame.setVisible(false);
+            frame = new JFrame();
+            button1 = new JButton("Select file");
+            button1.addActionListener(this);
+            button2 = new JButton("Process");
+            button2.addActionListener(this);
+            fc = new JFileChooser();
+
+            panel = new JPanel();
+            panel.setBorder(BorderFactory.createEmptyBorder(300,300,100,300));
+            panel.setLayout(new GridLayout(0,1));
+
+            panel.add(button1);
+            panel.add(button2);
+            frame.setSize(1000,1000);
+            frame.add(panel, BorderLayout.PAGE_START);
+
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setTitle("GUI");
+            frame.pack();
+            frame.setVisible(true);
+         }
          int returnVal = fc.showOpenDialog(GUI.this); 
          if (returnVal == JFileChooser.APPROVE_OPTION) {
             file = fc.getSelectedFile();
              //This is where a real application would open the file.
          }
+         if(sp!=null){
+            frame.repaint();
+         }
+
       }
       if (e.getSource() == button2){
          try {
@@ -90,7 +118,7 @@ public class GUI extends JFrame implements ActionListener{
             String[][] disp = new String[i][2];            
             br = new BufferedReader(new FileReader(file));
             i=0;
-            while ((st = br.readLine()) != null){               
+            while ((st = br.readLine()) != null){
                String[] array=st.split("\t-\t");
                if(getMd5(array[0]).equals(array[1])){
                   disp[i][0]=array[0];
@@ -109,7 +137,7 @@ public class GUI extends JFrame implements ActionListener{
             j = new JTable(disp, columnNames);
             j.setBounds(30, 40, 200, 200);      
             // adding it to JScrollPane 
-            JScrollPane sp = new JScrollPane(j);
+            sp = new JScrollPane(j);
             javax.swing.SwingUtilities.invokeLater(new Runnable() {
                public void run() { 
                    sp.getVerticalScrollBar().setValue(0);
@@ -119,7 +147,7 @@ public class GUI extends JFrame implements ActionListener{
             frame.add(sp, BorderLayout.CENTER);
             frame.setVisible(true);
          } catch (Exception handlethis) {
-            //TODO: handle exception
+            System.out.println("No File Found");
          }
       }
 
