@@ -15,15 +15,18 @@ public class Sieve{
     }
 
     public static void main(String[] args){
-        int N=Integer.parseInt(args[0]);
-        ArrayList<Boolean> visited = new ArrayList<Boolean>(Collections.nCopies(N+1,false));
-        IntStream stream = IntStream.range(2,N+1);
-        stream.filter( x -> {
-            if(!visited.get(x)){
-                multiples(x, N, visited, 2);
-            }
-            return !visited.get(x);
-        }).forEach(System.out::println); 
+        Scanner inp = new Scanner(System.in);
+        if(inp.hasNextInt()){
+            int N= inp.nextInt();
+            ArrayList<Boolean> visited = new ArrayList<Boolean>(Collections.nCopies(N+1,false));
+            IntStream stream = IntStream.range(2,N+1);
+            stream.filter( x -> {
+                if(!visited.get(x)){
+                    multiples(x, N, visited, 2);
+                }
+                return !visited.get(x);
+            }).forEach(System.out::println); 
+        }
     }
     
 
