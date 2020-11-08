@@ -25,8 +25,9 @@ public class Sieve{
                     multiples(x, N, visited, 2);
                 }
                 return !visited.get(x);
-            }).forEach(System.out::println); 
+            }).map(x->(char)x).forEach( (x) -> System.out.print(x + " ")); 
         }
+	System.out.println("");
     }
     
 

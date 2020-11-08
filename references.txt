@@ -1,0 +1,3 @@
+https://www.w3schools.com/java/java_user_input.asp
+https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html
+https://www.geeksforgeeks.org/intstream-range-java/
