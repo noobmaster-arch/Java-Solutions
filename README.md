@@ -1,3 +1,1 @@
-# outlab8-190050054-190050109
-outlab8-190050054-190050109 created by GitHub Classroom
-Outlab for Java Basic
+Solutions to the problems at https://docs.google.com/document/d/1M08tNIlvvvnxAD7FCSrgEoXPYQbeWxRh_QOXzD45Gsg/edit?usp=sharing
